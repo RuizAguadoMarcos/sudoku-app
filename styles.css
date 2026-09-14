@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button, select {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover, select:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+}
+
+#timer {
+    text-align: center;
+    font-size: 1.2em;
+    color: #667eea;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0;
+    border: 3px solid #333;
+    margin: 0 auto;
+    width: fit-content;
+    background: #333;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    background: white;
+    cursor: pointer;
+}
+
+.cell input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+}
+
+.cell.fixed {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.cell.invalid {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.cell:nth-child(3n) {
+    border-right: 3px solid #333;
+}
+
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 3px solid #333;
+}
+
+#message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.1em;
+    min-height: 30px;
+    font-weight: bold;
+}
+
+.success {
+    color: #4caf50;
+}
+
+.error {
+    color: #f44336;
+}
+
+@media (max-width: 600px) {
+    .cell {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .cell input {
+        font-size: 16px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+}

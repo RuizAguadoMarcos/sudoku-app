@@ -77,7 +77,7 @@ function renderBoard() {
             
             if (currentBoard[row][col] !== 0) {
                 input.value = currentBoard[row][col];
-                input.disabled = true;
+                input.readOnly = true;
                 cell.classList.add('fixed');
             }
             

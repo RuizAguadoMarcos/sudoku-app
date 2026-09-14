@@ -100,6 +100,14 @@ button:hover, select:hover {
     color: #333;
 }
 
+.cell.fixed input {
+    cursor: default;
+}
+
+.cell.fixed.selected {
+    background: rgba(102, 126, 234, 0.15) !important;
+}
+
 .cell.invalid {
     background: #ffcdd2 !important;
     color: #c62828 !important;

@@ -18,6 +18,47 @@ function initGame(difficulty) {
     showMessage('');
 }
 
+// Limpiar highlights
+function clearHighlights() {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+        cell.classList.remove('highlighted-row', 'highlighted-col', 'same-number', 'selected');
+    });
+}
+
+// Resaltar selección
+function highlightSelection(input) {
+    clearHighlights();
+    
+    const row = input.dataset.row;
+    const col = input.dataset.col;
+    const value = input.value;
+    
+    const allInputs = document.querySelectorAll('input');
+    
+    allInputs.forEach(inp => {
+        const cell = inp.parentElement;
+        
+        // Resaltar fila
+        if (inp.dataset.row === row) {
+            cell.classList.add('highlighted-row');
+        }
+        
+        // Resaltar columna
+        if (inp.dataset.col === col) {
+            cell.classList.add('highlighted-col');
+        }
+        
+        // Resaltar mismo número
+        if (value && inp.value === value) {
+            cell.classList.add('same-number');
+        }
+    });
+    
+    // Resaltar celda seleccionada
+    input.parentElement.classList.add('selected');
+}
+
 // Renderizar el tablero
 function renderBoard() {
     const grid = document.getElementById('grid');
@@ -41,6 +82,9 @@ function renderBoard() {
             }
             
             input.addEventListener('input', handleInput);
+            input.addEventListener('focus', () => highlightSelection(input));
+            input.addEventListener('blur', clearHighlights);
+            
             cell.appendChild(input);
             grid.appendChild(cell);
         }

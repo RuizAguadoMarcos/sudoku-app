@@ -101,8 +101,31 @@ button:hover, select:hover {
 }
 
 .cell.invalid {
-    background: #ffebee;
-    color: #c62828;
+    background: #ffcdd2 !important;
+    color: #c62828 !important;
+    animation: shake 0.3s;
+}
+
+.cell.highlighted-row,
+.cell.highlighted-col {
+    background: rgba(102, 126, 234, 0.1) !important;
+}
+
+.cell.same-number {
+    background: rgba(102, 126, 234, 0.3) !important;
+    color: #667eea !important;
+    font-weight: 900;
+}
+
+.cell.selected {
+    background: rgba(102, 126, 234, 0.2) !important;
+    border: 2px solid #667eea !important;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 .cell:nth-child(3n) {

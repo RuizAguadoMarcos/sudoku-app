@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test Highlight</title>
+    <style>
+        .cell { width: 50px; height: 50px; border: 1px solid #ccc; display: inline-block; }
+        .highlighted-row { background: rgba(102, 126, 234, 0.3) !important; }
+        .highlighted-col { background: rgba(102, 126, 234, 0.3) !important; }
+        .same-number { background: rgba(255, 0, 0, 0.5) !important; }
+    </style>
+</head>
+<body>
+    <h3>Test Highlighting</h3>
+    <div id="grid"></div>
+    
+    <script>
+        const grid = document.getElementById('grid');
+        
+        // Crear grid 3x3 simple
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.maxLength = 1;
+                input.dataset.row = row;
+                input.dataset.col = col;
+                input.value = Math.floor(Math.random() * 9) + 1;
+                
+                input.addEventListener('focus', function() {
+                    console.log('Focus on row:', this.dataset.row, 'col:', this.dataset.col);
+                    
+                    // Limpiar
+                    document.querySelectorAll('.cell').forEach(c => {
+                        c.classList.remove('highlighted-row', 'highlighted-col', 'same-number');
+                    });
+                    
+                    // Resaltar
+                    const myRow = this.dataset.row;
+                    const myCol = this.dataset.col;
+                    const myValue = this.value;
+                    
+                    document.querySelectorAll('input').forEach(inp => {
+                        const cell = inp.parentElement;
+                        
+                        if (inp.dataset.row === myRow) {
+                            console.log('Highlighting row:', myRow);
+                            cell.classList.add('highlighted-row');
+                        }
+                        
+                        if (inp.dataset.col === myCol) {
+                            console.log('Highlighting col:', myCol);
+                            cell.classList.add('highlighted-col');
+                        }
+                        
+                        if (myValue && inp.value === myValue) {
+                            console.log('Same number:', myValue);
+                            cell.classList.add('same-number');
+                        }
+                    });
+                });
+                
+                cell.appendChild(input);
+                grid.appendChild(cell);
+            }
+            grid.appendChild(document.createElement('br'));
+        }
+    </script>
+</body>
+</html>

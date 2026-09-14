@@ -106,6 +106,7 @@ function handleInput(e) {
     currentBoard[row][col] = parseInt(value);
     
     validateMove(row, col);
+    highlightSelection(input); // Re-aplicar highlight después de validar
     checkCompletion();
 }
 
